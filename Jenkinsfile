@@ -16,6 +16,11 @@ node {
       ]]
   ])
   stage('Example') {
+    agent {
+        docker {
+          image 'golang:1.11'
+        }
+      }
       if (env.BRANCH_NAME == 'master') {
           echo 'I only execute on the master branch'
       } else {

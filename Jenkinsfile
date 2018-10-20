@@ -1,23 +1,20 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout') {
+    stage('Build') {
         steps {
           sh 'ls -all'
         }
     }
-    stage('Build') {
-      agent {
-        docker {
-          image 'golang:1.11'
-        }
-      }
+    stage('Test') {
       steps {
         sh 'go version'
       }
     }
   }
 }
+
+
 
 // node {
 //   checkout([

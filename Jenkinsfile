@@ -21,6 +21,7 @@ node {
       } else {
           echo 'I execute elsewhere'
           sh 'ls -all'
+          sleep(time:10,unit:"SECONDS")
       }
   }
 }

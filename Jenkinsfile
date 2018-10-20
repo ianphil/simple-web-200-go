@@ -59,9 +59,13 @@ node {
           // error(message:'Fail this build')
 
           // golang:1.11
-          docker.image('golang:1.11').withRun() { c ->
-              sh 'go version'
-          }
+          // docker.image('golang:1.11').withRun() { c ->
+          //     sh 'go version'
+          // }
+
+          docker.image('golang:1.11').inside {
+            sh 'go version'
+        }
       }
   }
 }

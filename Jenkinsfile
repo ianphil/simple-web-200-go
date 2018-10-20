@@ -33,9 +33,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
+                helloWorld("stuff")
             }
         }
     }
+}
+
+def helloWorld(text) {
+  echo text
 }
 
 // node {

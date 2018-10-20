@@ -65,7 +65,7 @@ node {
 
           docker.image('golang:1.11').inside {
             sh 'go version'
-            sh 'ls -all'
+            sh 'ls -all sample/'
         }
       }
   }

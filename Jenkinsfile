@@ -1,37 +1,3 @@
-// pipeline {
-//   agent any
-//   stages {
-//     stage('Build') {
-//         steps {
-//             checkout([
-//               $class: 'GitSCM', 
-//               branches: [[name: '*/master', name:'*/small']], 
-//               doGenerateSubmoduleConfigurations: false, 
-//               extensions: [[
-//                 $class: 'SparseCheckoutPaths', 
-//                 sparseCheckoutPaths: [[
-//                   path: 'sample'
-//                 ]]
-//               ]], 
-//                 submoduleCfg: [], 
-//                 userRemoteConfigs: [[
-//                   credentialsId: 'JenkinsSSH', 
-//                   url: 'git@github.com:iphilpot/simple-web-200-go.git'
-//                 ]]
-//             ])
-//           sh 'ls -all'
-//         }
-//     }
-//     stage('Test') {
-//       steps {
-//         sh 'go version'
-//       }
-//     }
-//   }
-// }
-
-
-
 node {
   checkout([
     $class: 'GitSCM', 
@@ -66,6 +32,10 @@ node {
           docker.image('golang:1.11').inside {
             sh 'go version'
             sh 'ls -all sample/'
+        }
+
+        withCredentials([azureServicePrincipal('ianphil')]) {
+            echo '$AZURE_CLIENT_ID'
         }
       }
   }

@@ -7,7 +7,7 @@ pipeline {
           image 'golang:1.11'
         }
       }
-      // This is new...
+      // This is new
       steps {
         sh 'echo build file'
       }

@@ -2,22 +2,24 @@ pipeline {
   agent any
   stages {
     stage('Checkout') {
-        checkout([
-          $class: 'GitSCM', 
-          branches: [[name: '*/master', name:'*/small']], 
-          doGenerateSubmoduleConfigurations: false, 
-          extensions: [[
-            $class: 'SparseCheckoutPaths', 
-            sparseCheckoutPaths: [[
-              path: 'sample'
-            ]]
-          ]], 
-            submoduleCfg: [], 
-            userRemoteConfigs: [[
-              credentialsId: 'JenkinsSSH', 
-              url: 'git@github.com:iphilpot/simple-web-200-go.git'
-            ]]
-        ])
+        steps {
+          checkout([
+            $class: 'GitSCM', 
+            branches: [[name: '*/master', name:'*/small']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [[
+              $class: 'SparseCheckoutPaths', 
+              sparseCheckoutPaths: [[
+                path: 'sample'
+              ]]
+            ]], 
+              submoduleCfg: [], 
+              userRemoteConfigs: [[
+                credentialsId: 'JenkinsSSH', 
+                url: 'git@github.com:iphilpot/simple-web-200-go.git'
+              ]]
+          ])
+        }
     }
     stage('Build') {
       agent {

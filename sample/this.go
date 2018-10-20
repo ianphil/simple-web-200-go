@@ -1,4 +1,4 @@
-package main
+package sample
 
 import (
 	"log"
@@ -7,7 +7,7 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	// test out of sample
+	// this is stuff
 }
 
 func main() {

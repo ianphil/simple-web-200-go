@@ -22,6 +22,7 @@ node {
           echo 'I execute elsewhere'
           sh 'ls -all'
           sleep(time:30,unit:"SECONDS")
+          error(message:'Fail this build')
       }
   }
 }

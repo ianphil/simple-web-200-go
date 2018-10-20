@@ -21,7 +21,7 @@ node {
       } else {
           echo 'I execute elsewhere'
           sh 'ls -all'
-          sleep(time:3,unit:"SECONDS")
+          sleep(time:5,unit:"SECONDS")
           // error(message:'Fail this build')
       }
   }

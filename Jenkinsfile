@@ -6,7 +6,7 @@ pipeline {
             steps {
                 checkout scm: [
                   $class: 'GitSCM', 
-                  branches: [[name: '*/master', name:'*/small']], 
+                  branches: [[name: '**']], 
                   doGenerateSubmoduleConfigurations: false, 
                   extensions: [[
                     $class: 'SparseCheckoutPaths', 
@@ -27,7 +27,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing'
-                sh 'ls -all'
             }
         }
         stage('Deploy') {

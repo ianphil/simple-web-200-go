@@ -54,8 +54,8 @@ node {
           echo 'I only execute on the master branch'
       } else {
           echo 'I execute elsewhere'
-          sh 'ls -all'
-          sleep(time:5,unit:"SECONDS")
+          // sh 'ls -all'
+          // sleep(time:5,unit:"SECONDS")
           // error(message:'Fail this build')
 
           // golang:1.11
@@ -65,6 +65,7 @@ node {
 
           docker.image('golang:1.11').inside {
             sh 'go version'
+            sh 'ls -all'
         }
       }
   }

@@ -4,22 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                checkout scm: [
-                  $class: 'GitSCM', 
-                  branches: [[name: '**']], 
-                  doGenerateSubmoduleConfigurations: false, 
-                  extensions: [[
-                    $class: 'SparseCheckoutPaths', 
-                    sparseCheckoutPaths: [[
-                      path: 'sample'
-                    ]]
-                  ]], 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[
-                      credentialsId: 'JenkinsSSH', 
-                      url: 'git@github.com:iphilpot/simple-web-200-go.git'
-                    ]]
-                ]
+                sparseCheckout()
                 echo 'Building'
                 sh 'ls -all'
             }
@@ -33,14 +18,28 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
-                helloWorld("stuff")
             }
         }
     }
 }
 
-def helloWorld(text) {
-  echo text
+def sparseCheckout() {
+  checkout scm: [
+    $class: 'GitSCM', 
+    branches: [[name: '**']], 
+    doGenerateSubmoduleConfigurations: false, 
+    extensions: [[
+      $class: 'SparseCheckoutPaths', 
+      sparseCheckoutPaths: [[
+        path: 'sample'
+      ]]
+    ]], 
+      submoduleCfg: [], 
+      userRemoteConfigs: [[
+        credentialsId: 'JenkinsSSH', 
+        url: 'git@github.com:iphilpot/simple-web-200-go.git'
+      ]]
+  ]
 }
 
 // node {

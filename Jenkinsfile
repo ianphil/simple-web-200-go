@@ -35,7 +35,7 @@ node {
         }
 
         withCredentials([azureServicePrincipal('ianphil')]) {
-            echo '$AZURE_CLIENT_ID'
+            echo $AZURE_CLIENT_ID
         }
       }
   }

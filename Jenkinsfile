@@ -16,16 +16,17 @@ pipeline {
             }
         }
         stage('Deploy') {
+          input {
+              message "Should we continue?"
+              ok "Yes, we should."
+              submitter "iphilpot,kottofy"
+              parameters {
+                  string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+              }
+          }
             steps {
                 echo 'Deploying'
-                input {
-                    message "Should we continue?"
-                    ok "Yes, we should."
-                    submitter "iphilpot,kottofy"
-                    parameters {
-                        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                    }
-                }
+                
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }

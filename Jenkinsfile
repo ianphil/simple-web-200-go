@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
         steps {
-          echo 'this echo'
+          sh 'ls -all'
         }
     }
     stage('Build') {

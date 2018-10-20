@@ -4,7 +4,24 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                checkout scm: [
+                  $class: 'GitSCM', 
+                  branches: [[name: '*/master', name:'*/small']], 
+                  doGenerateSubmoduleConfigurations: false, 
+                  extensions: [[
+                    $class: 'SparseCheckoutPaths', 
+                    sparseCheckoutPaths: [[
+                      path: 'sample'
+                    ]]
+                  ]], 
+                    submoduleCfg: [], 
+                    userRemoteConfigs: [[
+                      credentialsId: 'JenkinsSSH', 
+                      url: 'git@github.com:iphilpot/simple-web-200-go.git'
+                    ]]
+                ]
                 echo 'Building'
+                sh 'ls -all'
             }
         }
         stage('Test') {
